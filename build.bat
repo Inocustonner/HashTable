@@ -5,7 +5,7 @@ REM set srcPath=src\
 set objPath=obj\
 set outputPath=bin\
 set CompilerFlags=/c /O2 /Oi /Gd /GF /nologo /W4 /EHsc /wd4101 /wd4201 /wd4477
-set CompilerFlagsD=/c /Oi /Gd /GF /nologo /W4 /EHsc /wd4101 /wd4201 /wd4477 /Zi
+set CompilerFlagsD=/c /Oi /Gd /GF /nologo /W3 /EHsc /wd4101 /wd4201 /wd4477 /Zi
 set LinkerFlagsD=/SUBSYSTEM:CONSOLE /WX /incremental:no /NOLOGO /OUT:bin\bin.exe /DEBUG 
 REM set CompilerFlags=/Fo\..\obj
 

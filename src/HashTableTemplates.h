@@ -6,8 +6,8 @@
 #include <string.h>
 #include <math.h>
 #define HT_INITIAL_SIZE 53
-#define HT_PRIME1 53
-#define HT_PRIME2 161
+#define HT_PRIME1 83
+#define HT_PRIME2 43
 #define TMP_BUFFER_SZ 1024
 
 
@@ -17,7 +17,7 @@ internal
 u32 ht_hash(const char *str, const u32 a, u32 m)
 {
 	u32 hash = 0;
-	u32 len = strlen(str);
+	u32 len = (u32)strlen(str);
 	for (u32 i = 0; i < len; ++i)
 	{
 		hash += (u32)pow(a, len - (i + 1)) * str[i];
@@ -100,7 +100,7 @@ void ht_resize(ht_hash_table<T> *ht, u32 base_size)
 		ht_item<T> *item = ht->items[i];
 		if (item != NULL && (void*)item != &HT_DELETED_ITEM)
 		{
-			ht_item<T> *item_copy = ht_new_item_copy(item->key, strlen(item->key),
+			ht_item<T> *item_copy = ht_new_item_copy(item->key, (u32)strlen(item->key),
 													 item->value);
 			ht_insert_item(ht_new, item_copy);
 		}
@@ -255,13 +255,13 @@ void ht_delete(ht_hash_table<T> *ht, const char *key, u32 len)
 			{
 				ht_del_item(item);
 				ht->items[index] = (T*)&HT_DELETED_ITEM;
+				ht->count--;
 				break;
 			}
 		}
 
 		index = ht_get_hash(key_terminated, ht->size, i);
 	}
-	ht->count--;
 }
 
 template<typename T>

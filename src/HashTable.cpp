@@ -6,7 +6,7 @@
 #include <math.h>
 #define HT_INITIAL_SIZE 53
 #define HT_PRIME1 53
-#define HT_PRIME2 161
+#define HT_PRIME2 43
 #define TMP_BUFFER_SZ 1024
 
 
@@ -234,13 +234,13 @@ void ht_delete(ht_hash_table *ht, const char *key, u32 len)
 			{
 				ht_del_item(item);
 				ht->items[index] = &HT_DELETED_ITEM;
+				ht->count--;
 				break;
 			}
 		}
 
 		index = ht_get_hash(key_terminated, ht->size, i);
 	}
-	ht->count--;
 }
 
 
