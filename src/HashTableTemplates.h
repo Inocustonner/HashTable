@@ -1,5 +1,8 @@
+/*
+	NOTE: When you're using ht_insert take into an account that it creates a copy of the
+passed object.
+*/
 #pragma once
-
 #include "custom_types.h"
 #include "prime.h"
 #include <stdlib.h>
@@ -149,7 +152,7 @@ void ht_insert(ht_hash_table<T> *ht, const char *key, u32 len,
 		ht_resize_down(ht);
 	}
 	
-	ht_item<T> *item_new = ht_new_item(key, len, value);	
+	ht_item<T> *item_new = ht_new_item_copy(key, len, value);
 	u32 index = ht_get_hash(item_new->key, ht->size, 0);
 
 	for (u32 i = 1; ht->items[index] != NULL; ++i)

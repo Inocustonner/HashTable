@@ -33,3 +33,4 @@ void ht_delete(ht_hash_table *ht, const char *key, unsigned __int32 len);
 ht_hash_table *ht_new_sized(const unsigned __int32 base_size);
 ht_hash_table *ht_new();
 void ht_del_hash_table(ht_hash_table* ht);
+

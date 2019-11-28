@@ -5,7 +5,7 @@
 #include <string.h>
 #include <math.h>
 #define HT_INITIAL_SIZE 53
-#define HT_PRIME1 53
+#define HT_PRIME1 83
 #define HT_PRIME2 43
 #define TMP_BUFFER_SZ 1024
 
@@ -128,7 +128,7 @@ void ht_insert(ht_hash_table *ht, const char *key, u32 len,
 		ht_resize_down(ht);
 	}
 	
-	ht_item *item_new = ht_new_item(key, len, value, val_size);	
+	ht_item *item_new = ht_new_item_copy(key, len, value, val_size);	
 	u32 index = ht_get_hash(item_new->key, ht->size, 0);
 
 	for (u32 i = 1; ht->items[index] != NULL; ++i)
